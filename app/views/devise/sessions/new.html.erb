@@ -1,0 +1,26 @@
+<div class="uk-container uk-container-expand">
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field uk-margin">
+      <%= f.label :username, class: "uk-form-label" %><br />
+      <%= f.text_field :username, class: "uk-input" %>
+    </div>
+
+    <div class="field uk-margin">
+      <%= f.label :password, class: "uk-form-label" %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "uk-input" %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="field uk-margin">
+        <%= f.check_box :remember_me, class: "uk-checkbox" %>
+        <%= f.label :remember_me, class: "uk-form-label" %>
+      </div>
+    <% end -%>
+
+    <div class="actions uk-margin">
+      <%= f.submit "Log in", class: "uk-button uk-button-default"%>
+    </div>
+  <% end %>
+</div>

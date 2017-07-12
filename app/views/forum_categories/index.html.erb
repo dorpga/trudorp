@@ -1,0 +1,50 @@
+<div class="uk-container uk-container-expand">
+  <h1>Forum Categories</h1>
+
+  <% if can? :create, ForumCategory %>
+    <%= link_to "New", new_forum_category_path, class: 'uk-button uk-button-primary' %>
+  <% end %>
+
+  <table class="uk-table uk-table-striped uk-table-middle">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>Forum</th>
+            <th>Actions</th>
+            <th>Threads</th>
+            <th>Last Post</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% for category in @categories %>
+        <tr>
+            <td>
+              <a href="/forum/categories/<%=category.id%>"><%= category.title %></a>
+              <div class="uk-text-muted"><%= category.description %></div>
+            </td>
+            <td>
+              <% if can? :update, ForumCategory %>
+                <%= link_to "Edit", edit_forum_category_path(category), class: 'uk-button uk-button-default uk-button-small' %>
+              <% end %>
+
+              <% if can? :destroy, category %>
+                <%= link_to "Delete", category, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small' %>
+              <% end %>
+            </td>
+            <td><%= category.forum_threads.count %></td>
+            <td>
+              <div class="uk-text-top">
+                <div>
+                  <% if category.forum_threads.count > 0 %>
+                    <a href="/forum/threads/<%= category.forum_threads.last.id %>"><%= category.forum_threads.last.forum_posts.first.title %></a> by <a href="/users/<%= category.forum_threads.last().forum_posts.last().user.id %>"><%= category.forum_threads.last.forum_posts.last.user.username %></a>
+                  <% else %>
+                    No Threads
+                  <% end %>
+                </div>
+              </div>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,30 @@
+<%= form_for @forum_category do |f| %>
+<% if @forum_category.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= "#{pluralize(@forum_category.errors.count, "error")} prohibited this post from being saved:" %>
+    </h2>
+    <ul>
+      <% @forum_category.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field uk-margin">
+  <%= f.label :title, class: "uk-form-label" %><br />
+  <%= f.text_field :title, class: "uk-input" %>
+</div>
+
+<div class="field uk-margin">
+  <%= f.label :description, class: "uk-form-label" %><br />
+  <%= f.text_field :description, class: "uk-input" %>
+</div>
+
+<div class="form-group">
+  <%= f.button :submit, class: 'uk-button uk-button-primary' %>
+</div>
+<% end %>

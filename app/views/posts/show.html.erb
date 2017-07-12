@@ -1,0 +1,11 @@
+<div class="uk-container uk-container-expand">
+  <article class="uk-article">
+
+    <h1 class="uk-article-title"><%= link_to @post.title, post_path(@post), class: 'uk-link-reset' %></h1>
+
+    <p class="uk-article-meta">Written <% if @post.user %>by <a href="/users/<%= @post.user.id %>"><%= @post.user.username %></a><% end %> on <%= @post.created_at.strftime('%b %d, %Y') %>.</p>
+
+    <p><% if @post.body %><%= @post.body %><% end %></p>
+
+  </article>
+</div>
