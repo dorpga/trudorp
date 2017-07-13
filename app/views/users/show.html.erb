@@ -1,0 +1,27 @@
+<div class="uk-container uk-container-expand">
+  <h1><%= @user.username %></h1>
+  <div uk-grid>
+    <div class="uk-width-1-3@m">
+      <h3>Latest Forum Posts</h3>
+      <ul class="uk-list uk-list-striped">
+        <% for post in @user.forum_posts.last(5).reverse %>
+          <li><a href="/forum/threads/<%=post.forum_thread_id%>#post-<%=post.id%>"><%=post.title%></a></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="uk-width-1-3@m">
+      <h3>Latest Blog Posts</h3>
+      <ul class="uk-list uk-list-striped">
+        <% for post in @user.posts.last(5).reverse %>
+          <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="uk-width-1-3@m">
+      <h3>Actions</h3>
+      <% if can? :destroy, @user %>
+        <%= link_to "Delete", destroy_users_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+{
+  "name": "Dorp",
+  "short_name": "dorp",
+  "icons": [{
+    "src": "images/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "<Your Project ID>",
+  "gcm_user_visible_only": true
+}

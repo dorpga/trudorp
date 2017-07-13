@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :forum_posts, :path => '/forum/posts'
 
   get 'forum' => 'forum_categories#index'
+  get '@:id' => 'users#show'
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :destroy_users
 
 =begin
 get 'forum/categories' => 'forum_categories#index'

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     self.add_role(:newuser) if self.roles.blank?
   end
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :validate_media_type => false, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :validate_media_type => false, :default_url => "/images/avatar_placeholders/missing.png"
   do_not_validate_attachment_file_type :avatar
 
   # Include default devise modules. Others available are:
