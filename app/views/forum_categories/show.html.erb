@@ -31,7 +31,7 @@
               <div class="uk-text-top">
                 <div>
                   <% if thread.forum_posts.count > 0 %>
-                    <a href="/forum/threads/<%=thread.id%>#post-<%=thread.forum_posts.last().id%>"><%= thread.forum_posts.last.title %></a> by <% if thread.forum_posts.last.user %><a href="/users/<%= thread.forum_posts.last.user.id %>"><%= thread.forum_posts.last.user.username %><% else %>deleted<% end %></a>
+                    <a href="/forum/threads/<%=thread.id%>#post-<%=thread.forum_posts.last().id%>"><%= thread.forum_posts.last.title %></a> by <% if thread.forum_posts.last.user %><a href="/@<%= thread.forum_posts.last.user.username %>"><%= thread.forum_posts.last.user.username %><% else %>deleted<% end %></a>
                   <% else %>
                     No Threads
                   <% end %>
