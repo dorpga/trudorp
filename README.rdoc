@@ -1,5 +1,6 @@
 {<img alt='Stories in Ready' src='https://badge.waffle.io/dorpga/trudorp.png?label=ready&title=Ready' />}[https://waffle.io/dorpga/trudorp?utm_source=badge]
 {<img alt='Stories in Ready' src='https://badge.waffle.io/dorpga/trudorp.png?label=ready&title=Ready' />}[https://waffle.io/dorpga/trudorp?utm_source=badge]
+{<img alt='Stories in Ready' src='https://badge.waffle.io/dorpga/trudorp.png?label=ready&title=Ready' />}[https://waffle.io/dorpga/trudorp?utm_source=badge]
 == README
 
 This README would normally document whatever steps are necessary to get the
