@@ -1,30 +1,37 @@
-<div class="uk-container uk-container-expand">
-  <h1><%= @user.username %></h1>
-  <div uk-grid>
-    <div class="uk-width-1-3@m">
-      <h3>Latest Forum Posts</h3>
-      <ul class="uk-list uk-list-striped">
-        <% for post in @user.forum_posts.last(5).reverse %>
-          <li><a href="/forum/threads/<%=post.forum_thread_id%>#post-<%=post.id%>"><%=post.title%></a></li>
+<% container do %>
+  <% if @user %>
+    <h1><%= @user.username %></h1>
+    <div uk-grid>
+      <div class="uk-width-1-3@m">
+        <h3>Latest Forum Posts</h3>
+        <ul class="uk-list uk-list-striped">
+          <% for post in @user.forum_posts.last(5).reverse %>
+            <li><a href="/forum/threads/<%=post.forum_thread_id%>#post-<%=post.id%>"><%=post.title%></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="uk-width-1-3@m">
+        <h3>Latest Blog Posts</h3>
+        <ul class="uk-list uk-list-striped">
+          <% for post in @user.posts.last(5).reverse %>
+            <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="uk-width-1-3@m">
+        <h3>Actions</h3>
+        <% if can? :update, @user  %>
+          <%= link_to "Edit", edit_user_path(@user), class: 'uk-button uk-button-default uk-width-1-1' %>
         <% end %>
-      </ul>
-    </div>
-    <div class="uk-width-1-3@m">
-      <h3>Latest Blog Posts</h3>
-      <ul class="uk-list uk-list-striped">
-        <% for post in @user.posts.last(5).reverse %>
-          <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
+        <% if can? :destroy, @user %>
+          <%= link_to "Delete", user_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
         <% end %>
-      </ul>
+      </div>
     </div>
-    <div class="uk-width-1-3@m">
-      <h3>Actions</h3>
-      <% if can? :update, @user  %>
-        <%= link_to "Edit", edit_user_path(@user), class: 'uk-button uk-button-default uk-width-1-1' %>
-      <% end %>
-      <% if can? :destroy, @user %>
-        <%= link_to "Delete", user_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
-      <% end %>
+  <% else %>
+    <div uk-alert>
+      <h1>User not found</h1>
+      <p>The user may have been deleted or had never existed. Check your spelling and try again</p>
     </div>
-  </div>
-</div>
+  <% end %>
+<% end %>

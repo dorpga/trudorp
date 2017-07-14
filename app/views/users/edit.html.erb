@@ -1,4 +1,4 @@
-<div class="uk-container uk-container-expand">
+<% container do %>
   <h2>Edit <%= @user.username %></h2>
 
   <%= form_for @user do |f| %>
@@ -48,4 +48,4 @@
   <h3>Delete this account</h3>
 
   <%= button_to "Delete this account", user_path(@user), data: { confirm: 'Are you sure you want to do this? Please note that posted content will not be deleted.' }, method: :delete, class: 'uk-button uk-button-danger' %>
-</div>
+<% end%>

@@ -17,6 +17,23 @@ module ApplicationHelper
     end
   end
 
+  def init_simplemde(el=nil)
+    if el
+      "<script type='text/javascript'>var simplemde = new SimpleMDE(document.getElementById('##{el}'));</script>".html_safe
+    else
+      "<script type='text/javascript'>var simplemde = new SimpleMDE();</script>".html_safe
+    end
+  end
+
+  def unpkg(p)
+    "<script type='text/javascript' src='https://unpkg.com/#{p}' charset='utf-8'></script>".html_safe
+  end
+
+  def container(&block)
+    content = capture(&block)
+    concat(content_tag(:div, content, class: 'uk-container uk-container-expand uk-margin-small-top'))
+  end
+
   def markdown(text)
     coderayified = CodeRayify.new(:filter_html => true,
                                   :hard_wrap => true)

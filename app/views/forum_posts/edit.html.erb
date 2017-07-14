@@ -1,39 +1,5 @@
-<div class="uk-container uk-container-expand">
-  <%= form_for @forum_post do |f| %>
-  <% if @forum_post.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= "#{pluralize(@forum_post.errors.count, "error")} prohibited this post from being saved:" %>
-      </h2>
-      <ul>
-        <% @forum_post.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %>
-          </li>
-          <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% container do %>
+  <%= render "forum_posts/form" %>
+<% end %>
 
-  <% if params[:category] %><input type="hidden" id="thread_forum_category_id" name="category_id" value="<%= params[:category] %>" /><% end %>
-  <% if params[:thread] %><input type="hidden" id="thread_thread_id" name="thread_id" value="<%= params[:thread] %>" /><% end %>
-
-  <div class="field uk-margin">
-    <%= f.label :title, class: "uk-form-label" %><br />
-    <%= f.text_field :title, class: "uk-input" %>
-  </div>
-
-  <div class="field uk-margin">
-    <%= f.label :body, class: "uk-form-label" %><br />
-    <%= f.text_area :body, class: "uk-textarea" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.button :submit, class: 'uk-button uk-button-primary' %>
-  </div>
-  <% end %>
-</div>
-
-<script>
-  var simplemde = new SimpleMDE();
-</script>
+<%= init_simplemde %>

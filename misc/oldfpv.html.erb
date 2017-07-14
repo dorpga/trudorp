@@ -1,3 +1,10 @@
+<!-- Create new post button -->
+<div>
+  <% if can? :create, ForumPost %>
+  <%= link_to "New", "/forum/posts/new?thread=#{@forum_thread.id}", class: 'uk-button uk-button-primary' %>
+  <% end %>
+</div>
+
 <!-- Post -->
 <div class="uk-margin-medium-top" id="post-<%=post.id%>" uk-grid>
   <div class="uk-width-small">

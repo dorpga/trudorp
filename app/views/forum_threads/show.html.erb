@@ -1,14 +1,7 @@
-<div class="uk-container uk-container-expand">
-  <div>
-    <% if can? :create, ForumPost %>
-    <%= link_to "New", "/forum/posts/new?thread=#{@forum_thread.id}", class: 'uk-button uk-button-primary' %>
-    <% end %>
-  </div>
+<% container do %>
   <% for post in @forum_thread.forum_posts %>
   <div class="uk-card uk-card-default uk-width-1-1 uk-margin-top" id="post-<%=post.id%>">
       <div class="uk-card-header">
-
-
           <div class="uk-grid-small uk-flex-middle" uk-grid>
               <div class="uk-width-auto">
                   <img class="uk-border-rounded" width="40" height="40" src="<%=get_avatar(post.user)%>">
@@ -32,6 +25,7 @@
         <% end %>
       </div>
   </div>
-
   <% end %>
-</div>
+
+  <%= render 'forum_threads/form' %>
+<% end %>

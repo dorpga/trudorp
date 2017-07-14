@@ -1,4 +1,4 @@
-<div class="uk-container uk-container-expand">
+<% container do %>
   <h1><%= @forum_category.title %></h1>
 
   <% if can? :create, ForumThread %>
@@ -42,4 +42,4 @@
         <% end %>
     </tbody>
 </table>
-</div>
+<% end %>
