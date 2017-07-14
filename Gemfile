@@ -42,6 +42,7 @@ gem 'cancancan', '~> 2.0'
 gem 'paperclip'
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 gem "webpush"
+gem 'gravatar_image_tag'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

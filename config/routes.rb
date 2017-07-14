@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: 'accounts'
 
+  resources :users
   resources :posts
   resources :forum_categories, :path => '/forum/categories'
   resources :forum_threads, :path => '/forum/threads'
   resources :forum_posts, :path => '/forum/posts'
 
   get 'forum' => 'forum_categories#index'
-  get '@:id' => 'users#show'
-  match 'users/:id' => 'users#destroy', :via => :delete, :as => :destroy_users
+  get '@:id' => redirect {|params| "/users/#{params[:id]}" }
 
 =begin
 get 'forum/categories' => 'forum_categories#index'

@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="/manifest.json" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
     <link rel="stylesheet" href="https://unpkg.com/uikit/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/simplemde/dist/simplemde.min.css" />
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <script src="https://unpkg.com/jquery" charset="utf-8"></script>
     <script src="https://unpkg.com/uikit" charset="utf-8"></script>
@@ -33,7 +33,7 @@
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
           <% if user_signed_in? %>
-            <li><a href="/users/edit">Account</a></li>
+            <li><%= link_to('Account', edit_user_registration_path) %></li>
             <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
           <% else %>
             <li><%= link_to('Sign In', new_user_session_path) %></li>

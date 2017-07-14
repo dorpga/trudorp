@@ -1,0 +1,71 @@
+<!-- Post -->
+<div class="uk-margin-medium-top" id="post-<%=post.id%>" uk-grid>
+  <div class="uk-width-small">
+    <% if post.user %>
+    <div>
+      <img src="<%=get_avatar(post.user)%>" alt="<%=post.user.username%>'s Avatar" style="height:120px;width:100%" height="150" width="150">
+    </div>
+    <div class="uk-text-center uk-margin-small-top">
+      <a href="/@<%=post.user.username%>"><%= post.user.username %></a>
+    </div>
+    <div>
+      <% if post.user == @forum_thread.forum_posts.first.user %>
+      <span class="uk-label" title="Original Poster" uk-tooltip>OP</span>
+      <% end %>
+
+      <% if post.user.has_role? :admin %>
+      <span class="uk-label uk-label-danger" title="Administrator" uk-tooltip>A</span>
+      <% end %>
+
+      <% if post.user.has_role? :moderator %>
+      <span class="uk-label uk-label-warning" title="Moderator" uk-tooltip>M</span>
+      <% end %>
+
+    </div>
+    <div class="uk-margin-small-top">
+      <% if can? :update, post %>
+      <a href="/forum/posts/<%=post.id%>/edit" class="uk-button uk-button-default uk-width-1-1">Edit</a>
+      <% end %>
+      <% if can? :destroy, post %>
+      <%= link_to "Delete", post, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
+      <% end %>
+    </div>
+  <% else %>
+    <div>
+      <img src="/images/avatar_placeholders/deleted.gif" alt="Deleted's Avatar" style="height:120px;width:100%" height="150" width="150">
+    </div>
+    <div class="uk-text-center uk-margin-small-top">
+      Deleted
+    </div>
+    <div class="uk-margin-small-top">
+      <% if can? :update, post %>
+      <a href="/forum/posts/<%=post.id%>/edit" class="uk-button uk-button-default uk-width-1-1">Edit</a>
+      <% end %>
+      <% if can? :destroy, post %>
+      <%= link_to "Delete", post, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div class="uk-width-expand">
+    <div class="uk-text-lead forum-post-title"><%= post.title %></div>
+    <div class="uk-text-small forum-post-body">
+      <%= markdown(post.body) %>
+    </div>
+  </div>
+</div>
+
+<!-- Labels -->
+<% if post.user_id == @forum_thread.forum_posts.first.user_id %>
+<span class="uk-label" title="Original Poster" uk-tooltip>OP</span>
+<% end %>
+
+<% if post.user %>
+  <% if post.user.has_role? :admin %>
+  <span class="uk-label uk-label-danger" title="Administrator" uk-tooltip>A</span>
+  <% end %>
+
+  <% if post.user.has_role? :moderator %>
+  <span class="uk-label uk-label-warning" title="Moderator" uk-tooltip>M</span>
+  <% end %>
+<% end %>

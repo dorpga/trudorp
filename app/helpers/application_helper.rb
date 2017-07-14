@@ -5,6 +5,18 @@ module ApplicationHelper
     end
   end
 
+  def get_avatar(u)
+    if u
+      if u.avatar.exists?(:original)
+        u.avatar
+      else
+        "https://github.com/identicons/#{Digest::MD5::hexdigest(u.username).downcase}.png"
+      end
+    else
+      "/images/avatar_placeholders/deleted.png"
+    end
+  end
+
   def markdown(text)
     coderayified = CodeRayify.new(:filter_html => true,
                                   :hard_wrap => true)

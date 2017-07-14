@@ -9,7 +9,8 @@ class Ability
       can :read, :all
       can :create, ForumPost
       can :create, ForumThread
-      can :update, ForumPost, :id => ForumPost.with_role(:creator, user).pluck(:id)
+      can :update, ForumPost, :id => ForumPost.where(user: user).pluck(:id)
+      can :destroy, ForumPost, :id => ForumPost.where(user: user).pluck(:id)
     end
   end
 end

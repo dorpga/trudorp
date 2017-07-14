@@ -19,8 +19,11 @@
     </div>
     <div class="uk-width-1-3@m">
       <h3>Actions</h3>
+      <% if can? :update, @user  %>
+        <%= link_to "Edit", edit_user_path(@user), class: 'uk-button uk-button-default uk-width-1-1' %>
+      <% end %>
       <% if can? :destroy, @user %>
-        <%= link_to "Delete", destroy_users_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
+        <%= link_to "Delete", user_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
       <% end %>
     </div>
   </div>

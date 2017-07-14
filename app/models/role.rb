@@ -9,4 +9,8 @@ class Role < ActiveRecord::Base
             :allow_nil => true
 
   scopify
+
+  def self.defined_roles
+    self.all.map { |role| role.name  }
+  end
 end

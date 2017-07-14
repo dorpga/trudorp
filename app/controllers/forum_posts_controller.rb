@@ -18,14 +18,11 @@ class ForumPostsController < ApplicationController
 
     if params[:thread_id]
       t = ForumThread.find(params[:thread_id])
-      puts('UUUUU')
       t.forum_posts.create(title: params.require(:forum_post)[:title], body: params.require(:forum_post)[:body], user: current_user)
-      current_user.add_role :creator, t.forum_posts.last
-    else
-      t = ForumThread.new(forum_category_id: params[:category_id])
+    elsif params[:category_id]
+      t = ForumThread.new(forum_category_id: params[:category_id], user_id: current_user.id)
       t.save
       t.forum_posts.create(title: params.require(:forum_post)[:title], body: params.require(:forum_post)[:body], user: current_user)
-      current_user.add_role :creator, t.forum_posts.last
     end
 
     redirect_to forum_thread_path(t.id)
