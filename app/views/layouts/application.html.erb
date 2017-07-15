@@ -8,15 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="https://unpkg.com/uikit/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/simplemde/dist/simplemde.min.css" />
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <%= unpkg 'jquery' %>
-    <%= unpkg 'uikit' %>
-    <%= unpkg 'uikit/dist/js/uikit-icons.min.js' %>
 
     <%= csrf_meta_tags %>
   </head>
@@ -27,19 +24,19 @@
           <li>
             <a href="/">
               <span class="uk-visible@m">Home</span>
-              <span class="uk-hidden@m" uk-icon="icon: home"></span>
+              <span class="uk-hidden@m" uk-icon="icon: home; ratio: 1.25"></span>
             </a>
           </li>
           <li>
             <a href="/posts">
               <span class="uk-visible@m">Blog</span>
-              <span class="uk-hidden@m" uk-icon="icon: file-edit"></span>
+              <span class="uk-hidden@m" uk-icon="icon: file-edit; ratio: 1.25"></span>
             </a>
           </li>
           <li>
             <a href="/forum">
               <span class="uk-visible@m">Forum</span>
-              <span class="uk-hidden@m" uk-icon="icon: comment"></span>
+              <span class="uk-hidden@m" uk-icon="icon: comment; ratio: 1.25"></span>
             </a>
           </li>
         </ul>
@@ -49,28 +46,28 @@
         <ul class="uk-navbar-nav">
           <% if user_signed_in? %>
           <li>
-            <a href="/users/edit">
+            <a href="/accounts/edit">
               <span class="uk-visible@m">Account</span>
-              <span class="uk-hidden@m" uk-icon="icon: user"></span>
+              <span class="uk-hidden@m" uk-icon="icon: user; ratio: 1.25"></span>
             </a>
           </li>
           <li>
             <a rel="nofollow" data-method="delete" href="/accounts/sign_out">
               <span class="uk-visible@m">Sign Out</span>
-              <span class="uk-hidden@m" uk-icon="icon: sign-out"></span>
+              <span class="uk-hidden@m" uk-icon="icon: sign-out; ratio: 1.25"></span>
             </a>
           </li>
         <% else %>
           <li>
-            <a href="/users/sign_in">
+            <a href="/accounts/sign_in">
               <span class="uk-visible@m">Sign In</span>
-              <span class="uk-hidden@m" uk-icon="icon: sign-in"></span>
+              <span class="uk-hidden@m" uk-icon="icon: sign-in; ratio: 1.25"></span>
             </a>
           </li>
           <li>
-            <a href="/users/sign_up">
+            <a href="/accounts/sign_up">
               <span class="uk-visible@m">Sign Up</span>
-              <span class="uk-hidden@m" uk-icon="icon: plus"></span>
+              <span class="uk-hidden@m" uk-icon="icon: plus; ratio: 1.25"></span>
             </a>
           </li>
           <% end %>
@@ -78,7 +75,9 @@
       </div>
     </nav>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
 
   </body>
 </html>

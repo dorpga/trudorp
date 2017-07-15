@@ -1,45 +1,49 @@
 <% container do %>
-  <h1><%= @forum_category.title %></h1>
+<h1><%= @forum_category.title %></h1>
 
-  <% if can? :create, ForumThread %>
-    <%= link_to "New", "/forum/posts/new?category=#{@forum_category.id}", class: 'uk-button uk-button-primary' %>
-  <% end %>
-
-  <table class="uk-table uk-table-striped uk-table-middle">
-    <caption></caption>
-    <thead>
-        <tr>
-            <th>Thread</th>
-            <th>Actions</th>
-            <th>Posts</th>
-            <th>Last Post</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% for thread in @forum_category.forum_threads %>
-        <tr>
-            <td>
-              <a href="/forum/threads/<%=thread.id%>"><% if thread.forum_posts.count > 0 %><%= thread.forum_posts.first.title %><% else %>ERROR<% end %></a>
-            </td>
-            <td>
-              <% if can? :destroy, thread %>
-                <%= link_to "Delete", thread, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small' %>
-              <% end %>
-            </td>
-            <td><%= thread.forum_posts.count %></td>
-            <td>
-              <div class="uk-text-top">
-                <div>
-                  <% if thread.forum_posts.count > 0 %>
-                    <a href="/forum/threads/<%=thread.id%>#post-<%=thread.forum_posts.last().id%>"><%= thread.forum_posts.last.title %></a> by <% if thread.forum_posts.last.user %><a href="/@<%= thread.forum_posts.last.user.username %>"><%= thread.forum_posts.last.user.username %><% else %>deleted<% end %></a>
-                  <% else %>
-                    No Threads
-                  <% end %>
-                </div>
-              </div>
-            </td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<% if can? :create, ForumThread %>
+<%= link_to "New", "/forum/posts/new?category=#{@forum_category.id}", class: 'uk-button uk-button-primary' %>
 <% end %>
+<% end %>
+
+<table class="uk-table uk-table-striped uk-table-middle">
+  <thead>
+    <tr>
+      <th>Thread</th>
+      <th>Actions</th>
+      <th>Posts</th>
+      <th>Last Post</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for thread in @forum_category.forum_threads %>
+    <tr>
+      <td>
+        <a href="/forum/threads/<%=thread.id%>"><% if thread.forum_posts.count > 0 %><%= thread.forum_posts.first.title %>
+        <% else %>ERROR<% end %></a>
+      </td>
+      <td>
+        <% if can? :destroy, thread %>
+        <%= link_to "Delete", thread, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small' %>
+        <% end %>
+      </td>
+      <td><%= thread.forum_posts.count %></td>
+      <td>
+        <div class="uk-text-top">
+          <div>
+            <% if thread.forum_posts.count > 0 %>
+            <a href="/forum/threads/<%=thread.id%>#post-<%=thread.forum_posts.last().id%>"><%= thread.forum_posts.last.title %></a>
+            by
+            <% if thread.forum_posts.last.user %>
+            <a href="/@<%= thread.forum_posts.last.user.username %>"><%= thread.forum_posts.last.user.username %>
+            <% else %>deleted<% end %></a>
+          <% else %>
+            No Threads
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

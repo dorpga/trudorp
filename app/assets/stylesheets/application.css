@@ -12,6 +12,5 @@
  *
  *= require_tree .
  *= require_self
+ *= require polyfills/emoji.css
  */
-
-@import "simplemde.min.css";

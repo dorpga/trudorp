@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require simplemde.min
+//= require uikit.min
+//= require uikit-icons.min
+//= require modernizr-custom
+//= require polyfills/emoji
 //= require_tree .

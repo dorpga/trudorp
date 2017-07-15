@@ -4,6 +4,7 @@
   <% if can? :create, ForumCategory %>
     <%= link_to "New", new_forum_category_path, class: 'uk-button uk-button-primary' %>
   <% end %>
+<% end %>
 
   <table class="uk-table uk-table-striped uk-table-middle">
     <caption></caption>
@@ -11,8 +12,8 @@
         <tr>
             <th>Forum</th>
             <th>Actions</th>
-            <th>Threads</th>
-            <th>Last Post</th>
+            <th class="uk-visible@m">Threads</th>
+            <th>Lastest Thread</th>
         </tr>
     </thead>
     <tbody>
@@ -24,14 +25,16 @@
             </td>
             <td>
               <% if can? :update, ForumCategory %>
-                <%= link_to "Edit", edit_forum_category_path(category), class: 'uk-button uk-button-default uk-button-small' %>
+                <%= link_to "Edit", edit_forum_category_path(category), class: 'uk-button uk-button-default uk-button-small uk-visible@m' %>
+                <%= link_to "", edit_forum_category_path(category), 'uk-icon': 'icon: pencil; ratio: 1.25', class: 'uk-hidden@m' %>
               <% end %>
 
               <% if can? :destroy, category %>
-                <%= link_to "Delete", category, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small' %>
+                <%= link_to "Delete", category, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small uk-visible@m' %>
+                <%= link_to "", category, data: {confirm: "Are you sure?"}, 'uk-icon': 'icon: close; ratio: 1.25', :method => :delete, class: 'uk-hidden@m' %>
               <% end %>
             </td>
-            <td><%= category.forum_threads.count %></td>
+            <td class="uk-visible@m"><%= category.forum_threads.count %></td>
             <td>
               <div class="uk-text-top">
                 <div>
@@ -47,4 +50,3 @@
         <% end %>
     </tbody>
 </table>
-<% end %>

@@ -14,7 +14,7 @@
           </div>
       </div>
       <div class="uk-card-body">
-          <p><%= markdown(post.body) %></p>
+          <%= markdown(post.body) %>
       </div>
       <div class="uk-card-footer">
         <% if can? :update, post %>
