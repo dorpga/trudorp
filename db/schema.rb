@@ -11,7 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713232028) do
+ActiveRecord::Schema.define(version: 20170725013000) do
+
+  create_table "blog_comments", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "blog_post_id"
+    t.integer  "user_id"
+  end
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
+
+  create_table "blog_taggings", force: :cascade do |t|
+    t.integer  "blog_post_id"
+    t.integer  "blog_tag_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "blog_taggings", ["blog_post_id"], name: "index_blog_taggings_on_blog_post_id"
+  add_index "blog_taggings", ["blog_tag_id"], name: "index_blog_taggings_on_blog_tag_id"
+
+  create_table "blog_tags", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "forum_categories", force: :cascade do |t|
     t.string   "title"

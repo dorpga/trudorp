@@ -1,11 +1,48 @@
-<form action="<%=url_for(action: 'create', controller: 'forum_posts')%>" method="post" class="uk-margin-top">
+<form action="<%=url_for(action: 'create', controller: 'forum_posts')%>" method="post" class="uk-margin-top" id="forum_post_form">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" id="thread_thread_id" name="thread_id" value="<%= @forum_thread.id %>">
   <input type="text" name="forum_post[title]" value="RE: <%=@forum_thread.forum_posts.first.title%>" class="uk-input uk-margin-small-bottom">
-  <textarea name="forum_post[body]"></textarea>
+  <textarea name="forum_post[body]" id="forum_post_body" hidden></textarea>
+  <div id="forum_post_body_editor" class="uk-margin-small-bottom"></div>
   <input type="submit" class="uk-button uk-button-primary">
-
-  <script>
-    var simplemde = new SimpleMDE();
-  </script>
 </form>
+
+<script>
+  var editor = new Quill('#forum_post_body_editor', {
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, 4, false] }],
+        [
+          'bold', 'italic', 'underline', 'strike'
+        ],
+        [
+          'blockquote', 'code-block'
+        ],
+        [
+          'link', 'video'
+        ],
+        [
+          {
+            'list': 'ordered'
+          }, {
+            'list': 'bullet'
+          }
+        ],
+        [
+          {
+            'script': 'sub'
+          }, {
+            'script': 'super'
+          }
+        ]
+      ]
+    },
+    theme: 'snow'
+  });
+  editor.root.innerHTML = document.getElementById('forum_post_body').value
+  var form = document.getElementById('forum_post_form');
+  form.onsubmit = function () {
+    var body = document.getElementById('forum_post_body');
+    body.value = editor.root.innerHTML
+  };
+</script>

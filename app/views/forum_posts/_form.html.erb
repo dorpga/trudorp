@@ -1,4 +1,4 @@
-<%= form_for @forum_post do |f| %>
+<%= form_for @forum_post, :html => {:id => "forum_post_form" } do |f| %>
 <% if @forum_post.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -24,10 +24,26 @@
 
 <div class="field uk-margin">
   <%= f.label :body, class: "uk-form-label" %><br />
-  <%= f.text_area :body, class: "uk-textarea" %>
+  <div id="forum_post_body_editor"></div>
+  <%= f.text_area :body, class: "uk-textarea", hidden: true %>
 </div>
 
 <div class="form-group">
   <%= f.button :submit, class: 'uk-button uk-button-primary' %>
 </div>
 <% end %>
+
+<script>
+var editor = new Quill('#forum_post_body_editor', {
+  modules: {
+    toolbar: true
+  },
+  theme: 'snow'
+});
+editor.root.innerHTML = document.getElementById('forum_post_body').value
+var form = document.getElementById('forum_post_form');
+form.onsubmit = function() {
+  var body = document.getElementById('forum_post_body');
+  body.value = editor.root.innerHTML
+};
+</script>

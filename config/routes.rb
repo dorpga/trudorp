@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'blog_comments/edit'
+
+  get 'blog_comments/new'
+
   devise_for :users, path: 'accounts'
 
   resources :users
-  resources :posts
+  resources :blog_posts, param: :slug, :path => '/blog'
   resources :forum_categories, :path => '/forum/categories'
   resources :forum_threads, :path => '/forum/threads'
   resources :forum_posts, :path => '/forum/posts'

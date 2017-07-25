@@ -34,7 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'bootstrap_form'
-gem 'simplemde-rails'
 gem 'redcarpet'
 gem 'coderay'
 gem 'rolify'

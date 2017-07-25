@@ -1,0 +1,29 @@
+<% container do %>
+  <article class="uk-article">
+
+    <h1 class="uk-article-title"><%= link_to @blog_post.title, blog_post_path(@blog_post), class: 'uk-link-reset' %></h1>
+
+    <p class="uk-article-meta">Written <% if @blog_post.user %>by <%= link_to @blog_post.user.username, user_path(@blog_post.user) %><% end %> on <%= @blog_post.created_at.strftime('%b %d, %Y') %>.</p>
+
+    <div class="blog-post-body">
+      <% if @blog_post.body %>
+        <%= raw @blog_post.body %>
+      <% end %>
+    </div>
+  </article>
+
+  <section class="blog-post-comments">
+    <% for comment in @blog_post.blog_comments %>
+      <article class="uk-comment">
+          <header class="uk-comment-header">
+              <img class="uk-comment-avatar" src="" alt="">
+              <h4 class="uk-comment-title"><%= comment.title %></h4>
+              <ul class="uk-comment-meta uk-subnav"></ul>
+          </header>
+          <div class="uk-comment-body"><%= comment.body %></div>
+      </article>
+    <% end %>
+
+    <%= render 'blog_comments/form' %>
+  </section>
+<% end %>

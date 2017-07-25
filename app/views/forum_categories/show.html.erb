@@ -1,9 +1,9 @@
 <% container do %>
-<h1><%= @forum_category.title %></h1>
+  <h1><%= @forum_category.title %></h1>
 
-<% if can? :create, ForumThread %>
-<%= link_to "New", "/forum/posts/new?category=#{@forum_category.id}", class: 'uk-button uk-button-primary' %>
-<% end %>
+  <% if can? :create, ForumThread %>
+    <%= link_to "New", "/forum/posts/new?category=#{@forum_category.id}", class: 'uk-button uk-button-primary' %>
+  <% end %>
 <% end %>
 
 <table class="uk-table uk-table-striped uk-table-middle">
@@ -32,13 +32,11 @@
         <div class="uk-text-top">
           <div>
             <% if thread.forum_posts.count > 0 %>
-            <a href="/forum/threads/<%=thread.id%>#post-<%=thread.forum_posts.last().id%>"><%= thread.forum_posts.last.title %></a>
-            by
-            <% if thread.forum_posts.last.user %>
-            <a href="/@<%= thread.forum_posts.last.user.username %>"><%= thread.forum_posts.last.user.username %>
-            <% else %>deleted<% end %></a>
-          <% else %>
-            No Threads
+              <%= link_to thread.forum_posts.last.title, "/forum/threads/#{thread.id}#post-#{thread.forum_posts.last().id}" %> (<% if thread.forum_posts.last.user %><%= link_to thread.forum_posts.last.user.username, user_path(thread.forum_posts.last.user) %><% else %>deleted<% end %>)
+              in
+              <%= link_to thread.forum_posts.first.title, forum_thread_path(thread) %> (<% if thread.forum_posts.first.user %><%= link_to thread.forum_posts.first.user.username, user_path(thread.forum_posts.first.user) %><% else %>deleted<% end %>)
+            <% else %>
+              No Threads
             <% end %>
           </div>
         </div>

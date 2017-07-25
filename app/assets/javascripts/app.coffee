@@ -9,5 +9,9 @@ document.addEventListener('turbolinks:before-cache', () ->
   )
 )
 
-if !Modernizr.emoji
-  emoji.emojifyWholePage();
+$(document).on "turbolinks:load", ->
+  document.querySelectorAll('[data-slug]').forEach((i) ->
+    i.addEventListener('change', () ->
+      document.getElementById(i.getAttribute('data-slug')).value = slugify(i.value)
+    )
+  )

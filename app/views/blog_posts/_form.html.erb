@@ -1,0 +1,56 @@
+<%= form_for @blog_post, :html => { :id => 'blog_post_form'} do |f| %>
+  <% if @blog_post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= "#{pluralize(@blog_post.errors.count, "error")} prohibited this post from being saved:" %>
+      </h2>
+      <ul>
+        <% @blog_post.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field uk-margin">
+    <%= f.label :title, class: "uk-form-label" %><br />
+    <%= f.text_field :title, class: "uk-input", data: { slug: "blog_post_slug" } %>
+  </div>
+
+  <div class="field uk-margin">
+    <%= f.label :slug, class: "uk-form-label" %><br />
+    <%= f.text_field :slug, class: "uk-input" %>
+  </div>
+
+  <div class="field uk-margin">
+    <%= f.label :body, class: "uk-form-label" %><br />
+    <div id="blog_post_body_editor"></div>
+    <%= f.text_area :body, class: "uk-textarea", hidden: true %>
+  </div>
+
+  <div class="field uk-margin">
+    <%= f.label :all_tags, class: "uk-form-label" %><br />
+    <%= f.text_field :all_tags, class: "uk-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, class: 'uk-button uk-button-primary' %>
+  </div>
+<% end %>
+
+<script>
+var editor = new Quill('#blog_post_body_editor', {
+  modules: {
+    toolbar: true
+  },
+  theme: 'snow'
+});
+editor.root.innerHTML = document.getElementById('blog_post_body').value
+var form = document.getElementById('blog_post_form');
+form.onsubmit = function() {
+  var body = document.getElementById('blog_post_body');
+  body.value = editor.root.innerHTML
+};
+</script>

@@ -8,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="https://unpkg.com/simplemde/dist/simplemde.min.css" />
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
-    <%= unpkg 'jquery' %>
 
     <%= csrf_meta_tags %>
   </head>
@@ -28,7 +24,7 @@
             </a>
           </li>
           <li>
-            <a href="/posts">
+            <a href="/blog">
               <span class="uk-visible@m">Blog</span>
               <span class="uk-hidden@m" uk-icon="icon: file-edit; ratio: 1.25"></span>
             </a>

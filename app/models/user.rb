@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   after_create :assign_default_role
 
   has_many :forum_posts
-  has_many :posts
+  has_many :blog_posts
 
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?
