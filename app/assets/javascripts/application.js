@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require simplemde/simplemde.min
 //= require uikit/uikit.min
 //= require uikit/uikit-icons.min
 //= require slugify/slugify.min
-//= require quill/quill.min
+//= require tinymce/tinymce.min
 //= require_tree .

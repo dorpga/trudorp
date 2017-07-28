@@ -2,8 +2,9 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" id="thread_thread_id" name="thread_id" value="<%= @forum_thread.id %>">
   <input type="text" name="forum_post[title]" value="RE: <%=@forum_thread.forum_posts.first.title%>" class="uk-input uk-margin-small-bottom">
-  <textarea name="forum_post[body]" id="forum_post_body" hidden></textarea>
-  <%= quill_forum_editor %>
+  <textarea name="forum_post[body]" id="forum_post_body"></textarea>
   <div class="uk-margin-small-bottom"></div>
   <input type="submit" class="uk-button uk-button-primary">
 </form>
+
+<%= render 'forum_threads/mcescript' %>

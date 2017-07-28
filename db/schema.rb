@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725013000) do
+ActiveRecord::Schema.define(version: 20170728012835) do
 
   create_table "blog_comments", force: :cascade do |t|
     t.string   "title"
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 20170725013000) do
   end
 
   add_index "forum_threads", ["forum_category_id"], name: "index_forum_threads_on_forum_category_id"
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "path"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 # Could not dump table "posts" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

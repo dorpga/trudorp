@@ -27,7 +27,6 @@
   <div class="field uk-margin">
     <%= f.label :body, class: "uk-form-label" %><br />
     <%= f.text_area :body, class: "uk-textarea", hidden: true %>
-    <%= quill_blog_editor %>
   </div>
 
   <div class="field uk-margin">
@@ -39,3 +38,5 @@
     <%= f.button :submit, class: 'uk-button uk-button-primary' %>
   </div>
 <% end %>
+
+<%= render 'blog_posts/mcescript' %>
