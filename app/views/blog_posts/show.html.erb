@@ -1,11 +1,19 @@
 <% container do %>
   <article class="uk-article">
 
-    <h1 class="uk-article-title"><%= link_to @blog_post.title, blog_post_path(@blog_post), class: 'uk-link-reset' %></h1>
+    <h1 class="uk-article-title uk-margin-small-bottom"><%= link_to @blog_post.title, blog_post_path(@blog_post), class: 'uk-link-reset' %></h1>
 
-    <p class="uk-article-meta">Written <% if @blog_post.user %>by <%= link_to @blog_post.user.username, user_path(@blog_post.user) %><% end %> on <%= @blog_post.created_at.strftime('%b %d, %Y') %>.</p>
+    <div class="uk-article-meta">Written <% if @blog_post.user %>by <%= link_to @blog_post.user.username, user_path(@blog_post.user) %><% end %> on <%= @blog_post.created_at.strftime('%b %d, %Y') %>.</div>
+    <div class="uk-article-meta">
+      <span uk-icon="icon: tag"></span>
+      <span class="uk-text-middle">
+        <% for tag in @blog_post.blog_tags %>
+          <%= link_to tag.name, blog_tag_path(tag) %><% if @blog_post.blog_tags.last != tag %>, <% end %>
+        <% end %>
+      </span>
+    </div>
 
-    <div class="blog-post-body">
+    <div class="blog-post-body uk-margin-small-top">
       <% if @blog_post.body %>
         <%= raw @blog_post.body %>
       <% end %>

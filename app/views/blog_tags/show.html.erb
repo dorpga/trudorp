@@ -1,14 +1,10 @@
 <% container do %>
-<h1>Blog Posts</h1>
-<div class="uk-margin-medium-bottom">
-  <% if can? :create, BlogPost %>
-  <%= link_to "New", new_blog_post_path, class: 'uk-button uk-button-primary' %>
-  <% end %>
-</div>
+<h1>Blog Posts tagged with
+  <%=@blog_tag.name%></h1>
 
 <div uk-grid>
   <div class="uk-width-3-4">
-    <% @blog_posts.each do |post| %>
+    <% for post in @blog_posts %>
     <article class="uk-article">
 
       <h1 class="uk-article-title"><%= link_to post.title, blog_post_path(post), class: 'uk-link-reset' %></h1>
@@ -18,8 +14,8 @@
         <%= link_to post.user.username, user_path(post.user) %>
         on
         <%= post.created_at.strftime('%b %d, %Y') %>.
-        </p>
-        <% end %>
+      </p>
+      <% end %>
       <p><% if post.body %><%= strip_tags post.body.truncate(358) %><% end %></p>
       <div class="uk-grid-small uk-child-width-auto" uk-grid>
         <div>
@@ -34,10 +30,10 @@
       </div>
 
     </article>
-    <% end %>
   </div>
   <div class="uk-width-1-4">
     <%= render 'blog_posts/taglist' %>
   </div>
 </div>
+<% end %>
 <% end %>

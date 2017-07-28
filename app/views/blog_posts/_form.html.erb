@@ -26,8 +26,8 @@
 
   <div class="field uk-margin">
     <%= f.label :body, class: "uk-form-label" %><br />
-    <div id="blog_post_body_editor"></div>
     <%= f.text_area :body, class: "uk-textarea", hidden: true %>
+    <%= quill_blog_editor %>
   </div>
 
   <div class="field uk-margin">
@@ -39,18 +39,3 @@
     <%= f.button :submit, class: 'uk-button uk-button-primary' %>
   </div>
 <% end %>
-
-<script>
-var editor = new Quill('#blog_post_body_editor', {
-  modules: {
-    toolbar: true
-  },
-  theme: 'snow'
-});
-editor.root.innerHTML = document.getElementById('blog_post_body').value
-var form = document.getElementById('blog_post_form');
-form.onsubmit = function() {
-  var body = document.getElementById('blog_post_body');
-  body.value = editor.root.innerHTML
-};
-</script>

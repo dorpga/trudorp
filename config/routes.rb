@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'blog_tags/show'
+
+  get 'blog_tags/index'
+
   get 'blog_comments/edit'
 
   get 'blog_comments/new'
@@ -7,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :blog_posts, param: :slug, :path => '/blog'
+  resources :blog_tags, param: :slug, :path => '/blog/tags'
+  
   resources :forum_categories, :path => '/forum/categories'
   resources :forum_threads, :path => '/forum/threads'
   resources :forum_posts, :path => '/forum/posts'

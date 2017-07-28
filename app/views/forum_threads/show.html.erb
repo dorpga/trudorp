@@ -14,7 +14,7 @@
           </div>
       </div>
       <div class="uk-card-body">
-          <%= sanitize post.body, tags: %w(strong em a code pre h1 h2 h3 p blockquote ul ol li br b i u s code img video audio blockquote sub sup),
+          <%= sanitize post.body, tags: %w(strong em a code pre h1 h2 h3 p blockquote ul ol li br b i u s code img video audio blockquote),
                 attributes: %w(href src alt height width) %>
       </div>
       <div class="uk-card-footer">

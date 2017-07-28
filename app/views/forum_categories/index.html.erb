@@ -1,52 +1,54 @@
 <% container do %>
-  <h1>Forum Categories</h1>
+<h1>Forum Categories</h1>
 
-  <% if can? :create, ForumCategory %>
-    <%= link_to "New", new_forum_category_path, class: 'uk-button uk-button-primary' %>
-  <% end %>
+<% if can? :create, ForumCategory %>
+<%= link_to "New", new_forum_category_path, class: 'uk-button uk-button-primary' %>
+<% end %>
 <% end %>
 
-  <table class="uk-table uk-table-striped uk-table-middle">
-    <caption></caption>
-    <thead>
-        <tr>
-            <th>Forum</th>
-            <th>Actions</th>
-            <th class="uk-visible@m">Threads</th>
-            <th>Lastest Thread</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% for category in @categories %>
-        <tr>
-            <td>
-              <a href="/forum/categories/<%=category.id%>"><%= category.title %></a>
-              <div class="uk-text-muted"><%= category.description %></div>
-            </td>
-            <td>
-              <% if can? :update, ForumCategory %>
-                <%= link_to "Edit", edit_forum_category_path(category), class: 'uk-button uk-button-default uk-button-small uk-visible@m' %>
-                <%= link_to "", edit_forum_category_path(category), 'uk-icon': 'icon: pencil; ratio: 1.25', class: 'uk-hidden@m' %>
-              <% end %>
-
-              <% if can? :destroy, category %>
-                <%= link_to "Delete", category, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small uk-visible@m' %>
-                <%= link_to "", category, data: {confirm: "Are you sure?"}, 'uk-icon': 'icon: close; ratio: 1.25', :method => :delete, class: 'uk-hidden@m' %>
-              <% end %>
-            </td>
-            <td class="uk-visible@m"><%= category.forum_threads.count %></td>
-            <td>
-              <div class="uk-text-top">
-                <div>
-                  <% if category.forum_threads.count > 0 %>
-                    <a href="/forum/threads/<%= category.forum_threads.last.id %>"><%= category.forum_threads.last.forum_posts.first.title %></a> (<% if category.forum_threads.last().forum_posts.first().user %><%= link_to category.forum_threads.last().forum_posts.first().user.username, user_path(category.forum_threads.last().forum_posts.first().user)%><% else %>deleted<% end %>)
-                  <% else %>
-                    No Threads
-                  <% end %>
-                </div>
-              </div>
-            </td>
-        </tr>
+<table class="uk-table uk-table-striped uk-table-middle">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th>Forum</th>
+      <th>Actions</th>
+      <th class="uk-visible@m">Threads</th>
+      <th>Lastest Thread</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for category in @categories %>
+    <tr>
+      <td>
+        <a href="/forum/categories/<%=category.id%>"><%= category.title %></a>
+        <div class="uk-text-muted"><%= category.description %></div>
+      </td>
+      <td>
+        <% if can? :update, ForumCategory %>
+        <%= link_to "Edit", edit_forum_category_path(category), class: 'uk-button uk-button-default uk-button-small uk-visible@m' %>
+        <%= link_to "", edit_forum_category_path(category), 'uk-icon': 'icon: pencil; ratio: 1.25', class: 'uk-hidden@m' %>
         <% end %>
-    </tbody>
+
+        <% if can? :destroy, category %>
+        <%= link_to "Delete", category, data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-button-small uk-visible@m' %>
+        <%= link_to "", category, data: {confirm: "Are you sure?"}, 'uk-icon': 'icon: close; ratio: 1.25', :method => :delete, class: 'uk-hidden@m' %>
+        <% end %>
+      </td>
+      <td class="uk-visible@m"><%= category.forum_threads.count %></td>
+      <td>
+        <div class="uk-text-top">
+          <div>
+            <% if category.forum_threads.count > 0 %>
+            <a href="/forum/threads/<%= category.forum_threads.last.id %>"><%= category.forum_threads.last.forum_posts.first.title %></a>
+            (<% if category.forum_threads.last().forum_posts.first().user %><%= link_to category.forum_threads.last().forum_posts.first().user.username, user_path(category.forum_threads.last().forum_posts.first().user)%>
+          <% else %>deleted<% end %>)
+          <% else %>
+            No Threads
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
