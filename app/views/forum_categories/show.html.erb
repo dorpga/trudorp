@@ -1,5 +1,6 @@
 <% container do %>
   <h1><%= @forum_category.title %></h1>
+  <p class="uk-text-meta"><%= @forum_category.description %></p>
 
   <% if can? :create, ForumThread %>
     <%= link_to "New", "/forum/posts/new?category=#{@forum_category.id}", class: 'uk-button uk-button-primary' %>

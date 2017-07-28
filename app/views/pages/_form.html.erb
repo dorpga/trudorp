@@ -1,0 +1,50 @@
+<%= form_for @page, :html => {:id => "page_form" } do |f| %>
+  <%= render "shared/errors", object: @page %>
+
+  <% form_field do %>
+    <%= f.label :name, class: "uk-form-label" %><br />
+    <%= f.text_field :name, class: "uk-input" %>
+  <% end %>
+
+  <% form_field do %>
+    <%= f.label :title, class: "uk-form-label" %><br />
+    <%= f.text_field :title, class: "uk-input" %>
+  <% end %>
+
+  <% form_field do %>
+    <%= f.label :path, class: "uk-form-label" %><br />
+    <%= f.text_field :path, class: "uk-input" %>
+  <% end %>
+
+  <% form_field do %>
+    <%= f.label :body, class: "uk-form-label" %><br />
+    <%= f.text_area :body, class: "uk-textarea" %>
+  <% end %>
+
+  <% form_group do %>
+    <%= f.button :submit, class: 'uk-button uk-button-primary' %>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+tinymce.init({
+selector: 'textarea',
+height: 500,
+theme: 'modern',
+plugins: [
+  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+  'searchreplace wordcount visualblocks visualchars code fullscreen',
+  'insertdatetime media nonbreaking save table contextmenu directionality',
+  'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+],
+toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+image_advtab: true,
+templates: [
+],
+content_css: [
+  '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+  '//www.tinymce.com/css/codepen.min.css'
+]
+});
+</script>

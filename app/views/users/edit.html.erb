@@ -3,45 +3,48 @@
 
   <%= form_for @user do |f| %>
 
-    <div class="field uk-margin">
+    <% form_field do %>
       <%= f.label :username, class: "uk-form-label" %><br />
       <%= f.text_field :username, class: "uk-input" %>
-    </div>
+    <% end %>
 
-    <div class="field uk-margin">
+    <% form_field do %>
       <%= f.label :email, class: "uk-form-label" %><br />
       <%= f.email_field :email, class: "uk-input" %>
-    </div>
+    <% end %>
 
-    <div class="field uk-margin">
+    <% form_field do %>
       <%= f.label :password, class: "uk-form-label" %> <i>(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, autocomplete: "off", class: "uk-input" %>
       <% if @minimum_password_length %>
         <br />
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
-    </div>
-
-    <div class="field uk-margin">
-      <%= f.label :password_confirmation, class: "uk-form-label" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "uk-input" %>
-    </div>
-
-    <div class="field uk-margin">
-      <%= f.file_field :avatar %>
-    </div>
-    <% if current_user.has_role? :admin %>
-
-      <select name="user[_roles][]" multiple class="uk-select">
-        <% Role.defined_roles.each do |role|%>
-          <option value="<%=role%>" <%if @user.has_role? role%>selected<%end%>><%= role %></option>
-        <% end %>
-      </select>
     <% end %>
 
-    <div class="actions uk-margin">
+    <% form_field do %>
+      <%= f.label :password_confirmation, class: "uk-form-label" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "uk-input" %>
+    <% end %>
+
+    <% form_field do %>
+      <%= f.file_field :avatar %>
+    <% end %>
+
+    <% form_field do %>
+      <% if current_user.has_role? :admin %>
+
+        <select name="user[_roles][]" multiple class="uk-select">
+          <% Role.defined_roles.each do |role|%>
+            <option value="<%=role%>" <%if @user.has_role? role%>selected<%end%>><%= role %></option>
+          <% end %>
+        </select>
+      <% end %>
+    <% end %>
+
+    <% form_group do %>
       <%= f.submit "Update", class: "uk-button uk-button-primary" %>
-    </div>
+    <% end %>
 
   <% end %>
 
