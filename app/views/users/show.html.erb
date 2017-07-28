@@ -1,7 +1,7 @@
 <% container do %>
   <% if @user %>
     <h1><%= @user.username %></h1>
-    <div uk-grid>
+    <% grid do %>
       <div class="uk-width-1-3@m">
         <h3>Latest Forum Posts</h3>
         <ul class="uk-list uk-list-striped">
@@ -27,11 +27,8 @@
           <%= link_to "Delete", user_path(@user), data: {confirm: "Are you sure?"}, :method => :delete, class: 'uk-button uk-button-danger uk-width-1-1' %>
         <% end %>
       </div>
-    </div>
+    <% end %>
   <% else %>
-    <div uk-alert>
-      <h1>User not found</h1>
-      <p>The user may have been deleted or had never existed. Check your spelling and try again</p>
-    </div>
+    <%= alert "User not found", "The user may have been deleted or had never existed. Check your spelling and try again" %>
   <% end %>
 <% end %>

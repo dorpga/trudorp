@@ -2,14 +2,14 @@
   <% for tag in BlogTag.all %>
     <% if tag.blog_posts.count > 0 %>
       <li>
-        <div uk-grid>
+        <% grid do %>
           <div class="uk-width-expand">
             <%= link_to tag.name, blog_tag_path(tag) %>
           </div>
           <div class="uk-width-auto">
             <span class="uk-badge"><%=tag.blog_posts.count%></span>
           </div>
-        </div>
+        <% end %>
       </li>
     <% end %>
   <% end %>

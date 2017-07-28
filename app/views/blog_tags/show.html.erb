@@ -2,7 +2,7 @@
 <h1>Blog Posts tagged with
   <%=@blog_tag.name%></h1>
 
-<div uk-grid>
+<% grid do %>
   <div class="uk-width-3-4">
     <% for post in @blog_posts %>
     <article class="uk-article">
@@ -34,6 +34,6 @@
   <div class="uk-width-1-4">
     <%= render 'blog_posts/taglist' %>
   </div>
-</div>
+<% end %>
 <% end %>
 <% end %>

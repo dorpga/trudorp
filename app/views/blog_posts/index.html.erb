@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<div uk-grid>
+<% grid do %>
   <div class="uk-width-3-4">
     <% @blog_posts.each do |post| %>
     <article class="uk-article">
@@ -39,5 +39,5 @@
   <div class="uk-width-1-4">
     <%= render 'blog_posts/taglist' %>
   </div>
-</div>
+<% end %>
 <% end %>

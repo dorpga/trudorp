@@ -32,6 +32,18 @@ module ApplicationHelper
     concat(content_tag(:div, content, class: 'form-group uk-margin'))
   end
 
+  def grid(&block)
+    content = capture(&block)
+    concat(content_tag(:div, content, class: 'uk-grid'))
+  end
+
+  def alert(title, description)
+    content_tag(:div, class: 'uk-alert') do
+      concat content_tag(:h1, title)
+      concat content_tag(:p, description)
+    end
+  end
+
   def markdown(text)
     coderayified = CodeRayify.new(:filter_html => true,
                                   :hard_wrap => true)
